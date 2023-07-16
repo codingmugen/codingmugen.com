@@ -1,8 +1,4 @@
-import {
-  GradientText,
-  Newsletter,
-  Section,
-} from 'astro-boilerplate-components';
+import { GradientText, Newsletter, Section } from '@/components';
 
 const CTA = () => (
   <Section>

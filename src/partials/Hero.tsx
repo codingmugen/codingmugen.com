@@ -1,9 +1,4 @@
-import {
-  GradientText,
-  HeroAvatar,
-  HeroSocial,
-  Section,
-} from 'astro-boilerplate-components';
+import { GradientText, HeroAvatar, HeroSocial, Section } from '@/components';
 
 const Hero = () => (
   <Section>
