@@ -41,19 +41,19 @@ const Hero = () => (
               alt="Twitter icon"
             />
           </a>
-          <a href="/">
+          <a href="https://www.linkedin.com/in/tashanduncan/">
             <HeroSocial
               src="/assets/images/linkedin-icon.png"
               alt="Linkedin icon"
             />
           </a>
-          <a href="/">
+          <a href="https://www.youtube.com/channel/UCgjw8jmwtdjIGRERjBTt5hQ">
             <HeroSocial
               src="/assets/images/youtube-icon.png"
               alt="Youtube icon"
             />
           </a>
-          <a href="/">
+          <a href="https://www.instagram.com/codingmugen">
             <HeroSocial
               src="/assets/images/instagram-icon.png"
               alt="Instagram icon"
