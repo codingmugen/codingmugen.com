@@ -45,11 +45,9 @@ const Navbar = () => (
       </a>
 
       <NavMenu>
-        <NavMenuItem href="/posts/">Blogs</NavMenuItem>
-        <NavMenuItem href="https://github.com/TashanDuncan">GitHub</NavMenuItem>
-        <NavMenuItem href="https://twitter.com/CodingMugen">
-          Twitter
-        </NavMenuItem>
+        <NavMenuItem href="/posts/">Blog</NavMenuItem>
+        <NavMenuItem href="/">Projects</NavMenuItem>
+        <NavMenuItem href="/">Contact</NavMenuItem>
       </NavMenu>
     </NavbarTwoColumns>
   </Section>
