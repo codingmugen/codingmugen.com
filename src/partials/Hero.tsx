@@ -10,13 +10,14 @@ const Hero = () => (
       }
       description={
         <>
-          I'm a dedicated Software Developer on a mission to empower aspiring
-          programmers and beginners to embark on their own coding journeys.
-          Through this blog, I aim to create a nurturing and inclusive space for
-          all those who are curious about the world of{' '}
+          As a passionate software developer, you've come to the right place.
+          This is a hub where you can explore the exciting world of{' '}
           <a className="text-cyan-400 hover:underline" href="/">
             Software Development
-          </a>
+          </a>{' '}
+          and expand your knowledge. Whether you're a seasoned coder or just
+          starting your journey, this blog is designed to inspire, educate, and
+          empower developers of all levels.
         </>
       }
       avatar={
