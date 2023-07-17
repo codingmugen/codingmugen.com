@@ -4,7 +4,7 @@ const ProjectList = () => (
   <Section
     title={
       <>
-        Recent <GradientText>Projects</GradientText>
+        Open Source <GradientText>Projects</GradientText>
       </>
     }
   >
