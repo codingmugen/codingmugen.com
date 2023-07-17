@@ -2,8 +2,6 @@
 [![Netlify Status](https://api.netlify.com/api/v1/badges/dab1fcdc-345b-47ac-833c-b025aaaac737/deploy-status)](https://app.netlify.com/sites/rad-medovik-6154db/deploys)
 [![Twitter](https://img.shields.io/twitter/url/https/twitter.com/cloudposse.svg?style=social&label=Follow%20%40CodingMugen)](https://twitter.com/codingmugen)
 
-
-
 ## Features
 
 A complete Blog feature:
