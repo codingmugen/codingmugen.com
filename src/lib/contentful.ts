@@ -1,7 +1,7 @@
 import contentful from 'contentful';
 
 export const contentfulClient =
-  import.meta.env.CONTENTFUL_SPACE_ID ??
+  import.meta.env.CONTENTFUL_SPACE_ID &&
   contentful.createClient({
     space: import.meta.env.CONTENTFUL_SPACE_ID,
     accessToken: import.meta.env.DEV
