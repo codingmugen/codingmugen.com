@@ -4,21 +4,37 @@ import { Hero } from '@/partials/Hero';
 import { ProjectList } from '@/partials/ProjectList';
 import { RecentPosts } from '@/partials/RecentPosts';
 import Base from '@/templates/Base.astro';
-import type { IFrontmatter } from '@/types/IFrontMatter';
+import type { BlogPostSkeleton, PostProps } from '@/types/BlogPost';
 import { AppConfig } from '@/utils/AppConfig';
-import { sortByDate } from '@/utils/Posts';
 
-const allPosts = await Astro.glob<IFrontmatter>('./posts/*.md');
-const sortedPosts = sortByDate(allPosts);
-const lastThreePosts = sortedPosts.slice(0, 3);
+import { contentfulClient } from '../lib/contentful';
 
 const { title } = AppConfig;
 const { description } = AppConfig;
+
+const entries = await contentfulClient.getEntries<BlogPostSkeleton>({});
+
+const posts = entries.items
+  .map((item) => {
+    const { headline, date, summary, slug, postImage } = item.fields;
+    return {
+      headline,
+      slug,
+      summary,
+      date: new Date(date).toLocaleDateString('en-US', {
+        month: 'short',
+        day: 'numeric',
+        year: 'numeric',
+      }),
+      postImage,
+    };
+  })
+  .slice(0, 3) as PostProps[];
 ---
 
 <Base head={{ title, description }}>
   <Hero />
   <ProjectList />
-  <RecentPosts postList={lastThreePosts} />
+  <RecentPosts posts={posts} />
   <CTA />
 </Base>

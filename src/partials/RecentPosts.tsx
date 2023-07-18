@@ -1,13 +1,11 @@
-import type { MarkdownInstance } from 'astro';
-
 import { BlogGallery, GradientText, Section } from '@/components';
-import type { IFrontmatter } from '@/types/IFrontMatter';
+import type { PostProps } from '@/types/BlogPost';
 
-type IRecentPostsProps = {
-  postList: MarkdownInstance<IFrontmatter>[];
-};
+interface RecentPostsProps {
+  posts: PostProps[];
+}
 
-const RecentPosts = (props: IRecentPostsProps) => (
+const RecentPosts = (props: RecentPostsProps) => (
   <Section
     title={
       <div className="flex items-baseline justify-between">
@@ -21,8 +19,7 @@ const RecentPosts = (props: IRecentPostsProps) => (
       </div>
     }
   >
-    <BlogGallery postList={props.postList} />
+    <BlogGallery postList={props.posts} />
   </Section>
 );
-
 export { RecentPosts };

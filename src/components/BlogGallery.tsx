@@ -1,17 +1,15 @@
-import type { MarkdownInstance } from 'astro';
-
-import type { IFrontmatter } from '@/types/IFrontMatter';
+import type { PostProps } from '@/types/BlogPost';
 
 import { BlogCard } from './BlogCard';
 
-type IRecentPostsProps = {
-  postList: MarkdownInstance<IFrontmatter>[];
-};
+interface BlogGalleryProps {
+  postList: PostProps[];
+}
 
-const BlogGallery = (props: IRecentPostsProps) => (
+const BlogGallery = (props: BlogGalleryProps) => (
   <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-    {props.postList.map((elt) => (
-      <BlogCard key={elt.url} instance={elt} />
+    {props.postList.map((post) => (
+      <BlogCard key={post.slug} instance={post} />
     ))}
   </div>
 );
