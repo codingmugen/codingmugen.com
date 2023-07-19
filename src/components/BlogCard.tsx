@@ -6,7 +6,7 @@ interface BlogCardProps {
 const BlogCard = (props: BlogCardProps) => {
   const { headline, slug, summary, date, postImage } = props.instance;
   return (
-    <a className="hover:translate-y-1" href={slug}>
+    <a className="hover:translate-y-1" href={`/posts/${slug}/`}>
       <div className="overflow-hidden rounded-md bg-slate-800">
         <div className="aspect-w-3 aspect-h-2">
           <img

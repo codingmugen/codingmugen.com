@@ -5,22 +5,35 @@ import {
   PaginationHeader,
   Section,
 } from '@/components';
+import { contentfulClient } from '@/lib/contentful';
 import { CTA } from '@/partials/CTA';
 import Base from '@/templates/Base.astro';
-import type { FrontmatterPage, IFrontmatter } from '@/types/IFrontMatter';
+import type { BlogPostSkeleton, PostProps } from '@/types/BlogPost';
+import type { FrontmatterPage } from '@/types/IFrontMatter';
 import { AppConfig } from '@/utils/AppConfig';
-import { sortByDate } from '@/utils/Posts';
 
 type GetStaticPaths = {
   paginate: any;
 }; // Overrides `GetStaticPathsOptions` types from Astro
 
 export async function getStaticPaths({ paginate }: GetStaticPaths) {
-  const allPosts = await Astro.glob<IFrontmatter>('./*.md');
-  const sortedPosts = sortByDate(allPosts);
-
+  const entries = await contentfulClient.getEntries<BlogPostSkeleton>({});
+  const posts = entries.items.map((item) => {
+    const { headline, date, summary, slug, postImage } = item.fields;
+    return {
+      headline,
+      slug,
+      summary,
+      date: new Date(date).toLocaleDateString('en-US', {
+        month: 'short',
+        day: 'numeric',
+        year: 'numeric',
+      }),
+      postImage,
+    };
+  });
   // Return a paginated collection of paths for all posts
-  return paginate(sortedPosts, { pageSize: 6 });
+  return paginate(posts, { pageSize: 6 });
 }
 
 interface Props {
@@ -29,22 +42,24 @@ interface Props {
 
 const { page } = Astro.props as Props;
 const titleSuffix = ` - ${AppConfig.site_name}`;
-const titleBase = `Blog page ${page.currentPage}`;
+const titleBase = `Blog`;
 const title = titleBase + titleSuffix;
 const description =
-  'Pagination example built with Astro styled with Tailwind CSS.';
+  'Pagination built with Astro styled with Tailwind CSS.';
+const { data } = page;
 ---
 
 <Base head={{ title, description }}>
   <Section>
     <PaginationHeader
-      title='Random title here'
-      description='Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+      title='My Blog'
+      description=''
     />
   </Section>
 
   <Section>
-    <BlogGallery postList={page.data} />
+    {/*eslint-disable-next-line prettier/prettier*/}
+    <BlogGallery postList={data as unknown as PostProps[]} />
   </Section>
 
   <Section>
