@@ -22,3 +22,4 @@ pnpm-debug.log*
 *.pem
 Thumbs.db
 .history
+src/pages/posts/**.md
