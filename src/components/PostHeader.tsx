@@ -1,5 +1,3 @@
-import { format } from 'date-fns';
-
 import type { IFrontmatter } from '@/types/IFrontMatter';
 
 type IPostHeaderProps = {
@@ -13,7 +11,11 @@ const PostHeader = (props: IPostHeaderProps) => (
 
     <div className="mt-2 text-center text-sm text-gray-400">
       By {props.author} on{' '}
-      {format(new Date(props.content.pubDate), 'LLL d, yyyy')}
+      {new Date(props.content.pubDate).toLocaleDateString('en-US', {
+        month: 'short',
+        day: 'numeric',
+        year: 'numeric',
+      })}
     </div>
   </>
 );

@@ -24,12 +24,14 @@ export type PostProps = {
   slug: string;
   summary: string;
   date: string;
-  postImage: {
-    fields: {
-      title: string;
-      file: {
-        url: string;
-      };
+  postImage: PostImage;
+};
+
+export type PostImage = {
+  fields: {
+    title: string;
+    file: {
+      url: string;
     };
   };
 };

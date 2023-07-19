@@ -1,9 +1,10 @@
 ---
-import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
+import { documentToHtmlString } from "@contentful/rich-text-html-renderer";
 
-import type { BlogPostSkeleton } from '@/types/BlogPost';
+import type { BlogPostSkeleton } from "@/types/BlogPost";
 
-import { contentfulClient } from '../../lib/contentful';
+import { contentfulClient } from "../../lib/contentful";
+import BasePost from "@/templates/BasePost.astro";
 
 export async function getStaticPaths() {
   const { items } = await contentfulClient.getEntries<BlogPostSkeleton>({});
@@ -11,23 +12,24 @@ export async function getStaticPaths() {
     params: { slug: item.fields.slug },
     props: {
       title: item.fields.headline,
+      description: item.fields.summary,
       content: documentToHtmlString(item.fields.content),
-      date: new Date(item.fields.date).toLocaleDateString(),
+      pubDate: new Date(item.fields.date).toLocaleDateString(),
+      postImage: item.fields.postImage,
     },
   }));
   return pages;
 }
 
-const { content, title, date } = Astro.props;
+const { content, title, description, pubDate, postImage, draft } = Astro.props;
+const postInfo = {
+  title,
+  description,
+  content,
+  pubDate,
+  image: postImage,
+  draft,
+};
 ---
 
-<html lang='en'>
-  <head>
-    <title>{title}</title>
-  </head>
-  <body>
-    <h1>{title}</h1>
-    <time>{date}</time>
-    <article set:html={content}></article>
-  </body>
-</html>
+<BasePost content={postInfo} />

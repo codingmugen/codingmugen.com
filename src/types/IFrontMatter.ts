@@ -1,9 +1,11 @@
+import type { PostImage } from './BlogPost';
+
 export interface IFrontmatter {
   title: string;
   description: string;
   pubDate: string;
-  imgSrc: string;
-  imgAlt: string;
+  image: PostImage;
+  content: string;
   draft: boolean;
 }
 

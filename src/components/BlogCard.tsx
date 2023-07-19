@@ -11,8 +11,8 @@ const BlogCard = (props: BlogCardProps) => {
         <div className="aspect-w-3 aspect-h-2">
           <img
             className="h-full w-full object-cover object-center"
-            src={postImage?.fields.file.url}
-            alt={postImage?.fields.title}
+            src={postImage?.fields.file.url || '/assets/images/tashan.jpg'}
+            alt={postImage?.fields.title || 'tashan with coding mugen logo'}
             loading="lazy"
           />
         </div>
