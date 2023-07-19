@@ -9,11 +9,11 @@ const FooterCopyright = (props: IFooterCopyrightProps) => (
       by{' '}
       <a
         className="text-cyan-400 hover:underline"
-        href="https://creativedesignsguru.com"
+        href="https://tashanduncan.com"
         target="_blank"
         rel="noopener noreferrer"
       >
-        CreativeDesignsGuru
+        Tashan Duncan
       </a>
       .
     </div>
