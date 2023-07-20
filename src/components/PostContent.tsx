@@ -1,4 +1,4 @@
-import parse from 'html-react-parser';
+import HTMLReactParser from 'html-react-parser';
 import type { ReactNode } from 'react';
 
 import type { IFrontmatter } from '@/types/IFrontMatter';
@@ -22,7 +22,9 @@ const PostContent = (props: IPostContentProps) => (
     </div>
 
     <div className="prose prose-invert mt-8 prose-img:rounded-lg">
-      {parse(props.content.content)}
+      {typeof props.content.content === 'string'
+        ? HTMLReactParser(props.content.content)
+        : props.content.content}
     </div>
   </div>
 );

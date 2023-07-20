@@ -9,7 +9,7 @@ import { contentfulClient } from '../../lib/contentful';
 export async function getStaticPaths() {
   const { items } = await contentfulClient.getEntries<BlogPostSkeleton>({});
   const pages = items.map((item) => ({
-    params: { slug: item.fields.slug },
+    params: { slug: item.fields.slug ?? 'hello-world' },
     props: {
       title: item.fields.headline,
       description: item.fields.summary,
