@@ -1,7 +1,8 @@
 import type { ReactNode } from 'react';
 import ReactMarkdown from 'react-markdown';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { dark } from 'react-syntax-highlighter/dist/cjs/styles/prism';
+import { a11yDark } from 'react-syntax-highlighter/dist/cjs/styles/prism';
+import remarkGfm from 'remark-gfm';
 
 import type { IFrontmatter } from '@/types/IFrontMatter';
 
@@ -24,16 +25,19 @@ const PostContent = (post: IPostContentProps) => (
     <div className="prose prose-invert mt-8 prose-img:rounded-lg">
       <ReactMarkdown
         children={post.content.content}
+        remarkPlugins={[remarkGfm]}
         components={{
+          pre({ ...props }) {
+            return <>{props.children}</>;
+          },
           code({ inline, className, children, ...props }) {
             const match = /language-(\w+)/.exec(className || '');
             return !inline && match ? (
               <SyntaxHighlighter
                 {...props}
                 children={String(children).replace(/\n$/, '')}
-                style={dark}
+                style={a11yDark}
                 language={match[1]}
-                PreTag="div"
               />
             ) : (
               <code {...props} className={className}>
