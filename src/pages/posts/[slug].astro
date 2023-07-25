@@ -1,6 +1,4 @@
 ---
-import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
-
 import BasePost from '@/templates/BasePost.astro';
 import type { BlogPostSkeleton } from '@/types/BlogPost';
 
@@ -13,7 +11,7 @@ export async function getStaticPaths() {
     props: {
       title: item.fields.headline,
       description: item.fields.summary,
-      content: documentToHtmlString(item.fields.content),
+      content: item.fields.article,
       pubDate: new Date(item.fields.date).toLocaleDateString(),
       postImage: item.fields.postImage,
     },
@@ -22,6 +20,7 @@ export async function getStaticPaths() {
 }
 
 const { content, title, description, pubDate, postImage, draft } = Astro.props;
+console.log(content);
 const postInfo = {
   title,
   description,

@@ -18,6 +18,7 @@ type GetStaticPaths = {
 
 export async function getStaticPaths({ paginate }: GetStaticPaths) {
   const entries = await contentfulClient.getEntries<BlogPostSkeleton>({});
+
   const posts = entries.items.map((item) => {
     const { headline, date, summary, slug, postImage } = item.fields;
     return {

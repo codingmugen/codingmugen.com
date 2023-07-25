@@ -6,7 +6,7 @@ export type BlogPostSkeleton = {
     headline: Contentful.EntryFieldTypes.Symbol;
     date: Contentful.EntryFieldTypes.Date;
     summary: Contentful.EntryFieldTypes.Text;
-    content: Contentful.EntryFieldTypes.RichText;
+    article: Contentful.EntryFieldTypes.Text;
     slug: Contentful.EntryFieldTypes.Symbol;
     postImage: {
       fields: {
